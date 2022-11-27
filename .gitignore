@@ -1,2 +1,6 @@
 .mvn
-.idea
+.idea/
+.vscode/
+.angular/
+node_modules/
+dist/
