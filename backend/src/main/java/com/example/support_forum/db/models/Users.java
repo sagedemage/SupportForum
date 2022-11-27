@@ -1,4 +1,4 @@
-package com.example.support_forum.support_forum_db.models;
+package com.example.support_forum.db.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -45,6 +45,4 @@ public class User {
     public void setPassword(String email) {
         this.password = password;
     }
-
-
 }
