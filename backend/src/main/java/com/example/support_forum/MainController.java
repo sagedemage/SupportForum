@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
-import com.example.support_forum.repositories.UserRepository;
+import com.example.support_forum.db.repositories.UserRepository;
 
 @Controller
 @RequestMapping(path="/api")
