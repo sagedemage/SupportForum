@@ -2,23 +2,54 @@ package com.example.support_forum.support_forum_db.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
 
 @Entity
-@Table(name = "posts")
 public class Post {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-    @Column(name = "email")
     private String title;
 
-    @Column(name = "username")
     private String description;
 
-    @Column(name = "password")
-    private String user_id;
+    private Integer user_id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String title) {
+        this.description = description;
+    }
+
+    public Integer getUser_Id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+
+
+
 }
