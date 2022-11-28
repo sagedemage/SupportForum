@@ -1,5 +1,10 @@
 # Django App (backend)
 
+## Run the Django App
+```
+ python3 manage.py runserver
+```
+
 ## To make model changes:
 
 1. Change your models in models.py
