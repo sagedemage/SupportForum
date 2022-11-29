@@ -11,7 +11,7 @@ from .models import User, Post
 
 @api_view(['GET'])
 def index(request):
-    return HttpResponse("Hello, world. You are at the polls index")
+    return HttpResponse("Hello, world. You are at the api index")
 
 
 @csrf_exempt
@@ -35,12 +35,14 @@ def add_post(request):
             post.save()
             return HttpResponse("Added Post")
 
+
 @csrf_exempt
 @api_view(['GET'])
 def view_posts(request):
     posts = Post.objects.all()
     serializer = PostSerializer(posts, many=True)
     return JsonResponse({'posts': serializer.data})
+
 
 def login(request):
     return "Hello"
