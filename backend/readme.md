@@ -17,7 +17,7 @@ python3 manage.py makemigrations
 
 3. Apply thoses changes to the database
 ```
-python manage.py migrate 
+python3 manage.py migrate 
 ```
 
 

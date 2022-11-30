@@ -20,9 +20,13 @@ def register(request):
     if request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            user = User(username=serializer.data.get("username"), password=serializer.data.get("password"))
-            user.save()
-            return HttpResponse("User Registration Success")
+            username_exist = User.objects.filter(username__contains=serializer.data.get("username"))
+            if username_exist.exists() is False:
+                user = User(username=serializer.data.get("username"), password=serializer.data.get("password"))
+                user.save()
+                return HttpResponse("User Registration Success")
+            else:
+                return HttpResponse("User Already exists")
 
 
 @csrf_exempt
