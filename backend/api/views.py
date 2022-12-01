@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt;
 from rest_framework.decorators import api_view
 from .serializers import UserSerializer, PostSerializer
 from .models import User, Post
+from django.contrib.auth.hashers import make_password, check_password
 # Create your views here.
 
 
@@ -18,18 +19,22 @@ def index(request):
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            email = User.objects.filter(email__contains=serializer.data.get("email"))
-            username = User.objects.filter(username__contains=serializer.data.get("username"))
-            if email.exists() is True:
-                return HttpResponse("Email Already exists")
-            elif username.exists() is True:
-                return HttpResponse("User Already exists")
-            else:
-                user = User(email=serializer.data.get("email"), username=serializer.data.get("username"), password=serializer.data.get("password"))
-                user.save()
-                return HttpResponse("User Registration Success")
+        contains_email = User.objects.filter(email__contains=request.data.get("email"))
+        contains_username = User.objects.filter(username__contains=request.data.get("username"))
+        password = request.data.get("password")
+        confirm = request.data.get("confirm")
+        if contains_email.exists() is True:
+            return HttpResponse("Email Already exists")
+        elif contains_username.exists() is True:
+            return HttpResponse("User Already exists")
+        elif password != confirm:
+            return HttpResponse("Passwords Do Not Match")
+        else:
+            hashed_password = make_password(password)
+            user = User(email=request.data.get("email"), username=request.data.get("username"),
+                        password=hashed_password)
+            user.save()
+            return HttpResponse("User Registration Success")
 
 
 @csrf_exempt
