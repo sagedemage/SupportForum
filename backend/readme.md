@@ -2,7 +2,7 @@
 
 ## Run the Django App
 ```
- python3 manage.py runserver
+python3 manage.py runserver
 ```
 
 ## To make model changes:
