@@ -20,4 +20,19 @@ python3 manage.py makemigrations
 python3 manage.py migrate 
 ```
 
+## Install dependencies for virtual environment
 
+Create virtual environment
+```
+python3 -m venv env
+```
+
+Activate virtual environment
+```
+source env/bin/activate
+```
+
+Install dependencies of the Django app
+```
+pip install -r requirements.txt
+```
