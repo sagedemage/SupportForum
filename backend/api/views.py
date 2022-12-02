@@ -7,12 +7,8 @@ from rest_framework.decorators import api_view
 from .serializers import UserSerializer, PostSerializer
 from .models import User, Post
 from django.contrib.auth.hashers import make_password, check_password
+from django.shortcuts import render
 # Create your views here.
-
-
-@api_view(['GET'])
-def index(request):
-    return HttpResponse("Hello, world. You are at the api index")
 
 
 @csrf_exempt
