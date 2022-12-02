@@ -39,6 +39,30 @@ def register(request):
 
 @csrf_exempt
 @api_view(['POST'])
+def login(request):
+    contains_email = User.objects.filter(email__exact=request.data.get("username"))
+    contains_username = User.objects.filter(username__exact=request.data.get("username"))
+    entered_password = request.data.get("password")
+    if contains_email.exists():
+        actual_password = contains_email.values_list('password', flat=True).get()
+        password_match = check_password(entered_password, actual_password)
+        if password_match:
+            return HttpResponse("Successful Login")
+        else:
+            return HttpResponse("Failed to Login")
+    elif contains_username.exists():
+        actual_password = contains_username.values_list('password', flat=True).get()
+        password_match = check_password(entered_password, actual_password)
+        if password_match:
+            return HttpResponse("Successful Login")
+        else:
+            return HttpResponse("Failed to Login")
+    else:
+        return HttpResponse("User does not exist")
+
+
+@csrf_exempt
+@api_view(['POST'])
 def add_post(request):
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
@@ -56,7 +80,6 @@ def view_posts(request):
     return JsonResponse({'posts': serializer.data})
 
 
-def login(request):
-    return "Hello"
+
 
 
