@@ -76,6 +76,12 @@ def view_posts(request):
     return JsonResponse({'posts': serializer.data})
 
 
+@csrf_exempt
+@api_view(['GET'])
+def test(request):
+    return JsonResponse({'response': 'test'})
+
+
 
 
 

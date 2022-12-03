@@ -4,7 +4,10 @@ This project was created using Angular.
 ## Dependencies
 Install dependencies
 ```
-npm install -g @angular/cli
+sudo npm install -g @angular/cli
+```
+```
+npm install @angular-devkit/build-angular
 ```
 
 ## Start app
