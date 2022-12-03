@@ -2,12 +2,13 @@
 This project was created using Angular. 
 
 ## Dependencies
-Install dependencies
+Install angular cli tool
 ```
 sudo npm install -g @angular/cli
 ```
+Install dependencies
 ```
-npm install @angular-devkit/build-angular
+npm install @angular-devkit/build-angular axios
 ```
 
 ## Start app

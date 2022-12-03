@@ -79,7 +79,7 @@ def view_posts(request):
 @csrf_exempt
 @api_view(['GET'])
 def test(request):
-    return JsonResponse({'response': 'test'})
+    return JsonResponse({'test_response': 'test'})
 
 
 
