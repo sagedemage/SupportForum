@@ -63,7 +63,6 @@ def add_post(request):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             user = User.objects.filter(id=request.data.get("user_id"))
-            print(request.data.get("user_id"))
             if user.exists():
                 post = Post(title=serializer.data.get("title"),
                             description=serializer.data.get("description"),
