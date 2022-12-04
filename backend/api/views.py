@@ -7,7 +7,6 @@ from rest_framework.decorators import api_view
 from .serializers import UserSerializer, PostSerializer
 from .models import User, Post
 from django.contrib.auth.hashers import make_password, check_password
-from django.shortcuts import render
 # Create your views here.
 
 
@@ -15,13 +14,13 @@ from django.shortcuts import render
 @api_view(['POST'])
 def register(request):
     if request.method == 'POST':
-        contains_email = User.objects.filter(email__contains=request.data.get("email"))
-        contains_username = User.objects.filter(username__contains=request.data.get("username"))
+        email_match = User.objects.filter(email__exact=request.data.get("email"))
+        username_match = User.objects.filter(username__exact=request.data.get("username"))
         password = request.data.get("password")
         confirm = request.data.get("confirm")
-        if contains_email.exists() is True:
+        if email_match.exists() is True:
             return HttpResponse("Email Already exists")
-        elif contains_username.exists() is True:
+        elif username_match.exists() is True:
             return HttpResponse("User Already exists")
         elif password != confirm:
             return HttpResponse("Passwords Do Not Match")
@@ -36,18 +35,18 @@ def register(request):
 @csrf_exempt
 @api_view(['POST'])
 def login(request):
-    contains_email = User.objects.filter(email__exact=request.data.get("username"))
-    contains_username = User.objects.filter(username__exact=request.data.get("username"))
+    email_match = User.objects.filter(email__exact=request.data.get("username"))
+    username_match = User.objects.filter(username__exact=request.data.get("username"))
     entered_password = request.data.get("password")
-    if contains_email.exists():
-        actual_password = contains_email.values_list('password', flat=True).get()
+    if email_match.exists():
+        actual_password = email_match.values_list('password', flat=True).get()
         password_match = check_password(entered_password, actual_password)
         if password_match:
             return HttpResponse("Successful Login")
         else:
             return HttpResponse("Failed to Login")
-    elif contains_username.exists():
-        actual_password = contains_username.values_list('password', flat=True).get()
+    elif username_match.exists():
+        actual_password = username_match.values_list('password', flat=True).get()
         password_match = check_password(entered_password, actual_password)
         if password_match:
             return HttpResponse("Successful Login")
@@ -63,17 +62,29 @@ def add_post(request):
     if request.method == 'POST':
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
-            post = Post(title=serializer.data.get("title"), description=serializer.data.get("description"))
-            post.save()
-            return HttpResponse("Added Post")
+            user = User.objects.filter(id=request.data.get("user_id"))
+            print(request.data.get("user_id"))
+            if user.exists():
+                post = Post(title=serializer.data.get("title"),
+                            description=serializer.data.get("description"),
+                            user_id=request.data.get("user_id"))
+                post.save()
+                return HttpResponse("Added Post")
+            else:
+                return HttpResponse("User Does Not Exist")
+        else:
+            return HttpResponse("Data not valid")
+
 
 
 @csrf_exempt
-@api_view(['GET'])
+@api_view(['POST'])
 def view_posts(request):
-    posts = Post.objects.all()
-    serializer = PostSerializer(posts, many=True)
-    return JsonResponse({'posts': serializer.data})
+    if request.method == 'POST':
+        user_id = request.data.get("user_id")
+        posts = Post.objects.filter(user_id__exact=user_id)
+        serializer = PostSerializer(posts, many=True)
+        return JsonResponse({'posts': serializer.data})
 
 
 @csrf_exempt
