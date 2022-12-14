@@ -45,20 +45,20 @@ def login(request):
             actual_password = email_match.values_list('password', flat=True).get()
             password_match = check_password(entered_password, actual_password)
             if password_match:
-                return HttpResponse("Successful Login")
+                return JsonResponse({'auth': True, 'success_msg': "Successful Login"})
             else:
-                return HttpResponse("Failed to Login")
+                return JsonResponse({'auth': False, 'err_msg': "Failed to Login"})
         elif username_match.exists():
             actual_password = username_match.values_list('password', flat=True).get()
             password_match = check_password(entered_password, actual_password)
             if password_match:
-                return HttpResponse("Successful Login")
+                return JsonResponse({'auth': True, 'success_msg': "Successful Login"})
             else:
-                return HttpResponse("Failed to Login")
+                return JsonResponse({'auth': False, 'err_msg': "Failed to Login"})
         else:
-            return HttpResponse("User does not exist")
+            return JsonResponse({'auth': False, 'err_msg': "User does not exist"})
     else:
-        return HttpResponse("data is not valid")
+        return JsonResponse({'auth': False, 'err_msg': "Data is not valid"})
 
 
 @csrf_exempt
