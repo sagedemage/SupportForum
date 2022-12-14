@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationBarComponent } from './components/navigation_bar/navigation_bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { NavigationBarComponent } from './components/navigation_bar/navigation_b
   imports: [
     BrowserModule,
     AppRoutingModule,
-	  BrowserAnimationsModule,
+	BrowserAnimationsModule,
+	FormsModule,
+	ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
