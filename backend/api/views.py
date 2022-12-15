@@ -20,17 +20,19 @@ def register(request):
         password = serializer.data.get("password")
         confirm = request.data.get("confirm")
         if email_match.exists() is True:
-            return HttpResponse("Email Already exists")
+            return JsonResponse({'registered': False, 'err_msg': "Email Already exists"})
         elif username_match.exists() is True:
-            return HttpResponse("User Already exists")
+            return JsonResponse({'registered': False, 'err_msg': "User Already exists"})
         elif password != confirm:
-            return HttpResponse("Passwords Do Not Match")
+            return JsonResponse({'registered': False, 'err_msg': "Passwords Do Not Match"})
+        elif len(password) < 8:
+            return JsonResponse({'registered': False, 'err_msg': "Password must be at least 8 characters"})
         else:
             hashed_password = make_password(password)
             user = User(email=serializer.data.get("email"), username=serializer.data.get("username"),
                         password=hashed_password)
             user.save()
-            return HttpResponse("User Registration Success")
+            return JsonResponse({'registered': True, 'success_msg': "User Registration Success"})
 
 
 @csrf_exempt
