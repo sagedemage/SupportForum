@@ -7,30 +7,34 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .content {
+.content {
     margin-top: 80px;
     flex-direction: column;
     margin-right: 16%;
     margin-left: 16%;
     min-height: 80vh;
-    display: flex;
-  }
+	display: flex;
+}
 
-  footer {
+footer {
     margin-top: 20px;
-	  text-align: center;
-  }
+	text-align: center;
+}
 
-  footer a {
+footer a {
     display: flex;
     align-items: center;
-  }
+}
 
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    
-  }
+.error {
+	color: red;
+}
 
-  @media screen and (max-width: 575px) {
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
     
-  }
+}
+
+@media screen and (max-width: 575px) {
+    
+}
