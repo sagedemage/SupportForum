@@ -6,28 +6,51 @@
                 <label htmlFor="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="email" 
                     formControlName="email" placeholder="Enter email"
-                    aria-describedby="emailHelp"
-                 required />
+                    aria-describedby="emailHelp" />
+				<div *ngIf="checkoutForm.get('email')!.hasError('email')"
+					class="error">
+            		Please enter the proper format for email
+          		</div>
+				<div *ngIf="checkoutForm.get('email')!.hasError('required')
+							&& checkoutForm.get('email')!.touched"
+					class="error">
+            		Required
+          		</div>
             </div>
             <div class="form-group">
                 <label for="exampleInputUsername1">Username</label>
                 <input class="form-control" id="username" 
                     formControlName="username" placeholder="Enter username"
                 required />
+				<div *ngIf="checkoutForm.get('username')!.hasError('required')
+							&& checkoutForm.get('username')!.touched"
+					class="error">
+            		Required
+          		</div>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="password" 
                     formControlName="password" placeholder="Enter password"
                 required />
+				<div *ngIf="checkoutForm.get('password')!.hasError('required')
+							&& checkoutForm.get('password')!.touched"
+					class="error">
+            		Required
+          		</div>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Confirm</label>
                 <input type="password" class="form-control" id="confirm" 
                     formControlName="confirm" placeholder="Enter password again"
                 required />
+				<div *ngIf="checkoutForm.get('confirm')!.hasError('required')
+							&& checkoutForm.get('confirm')!.touched"
+					class="error">
+            		Required
+          		</div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!checkoutForm.valid">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">Submit</button>
         </form>
     </div>
     <div id="message" class="col-md-auto col-lg-4">
