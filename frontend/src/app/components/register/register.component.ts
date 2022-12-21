@@ -17,7 +17,7 @@ export class RegisterComponent {
 	checkoutForm = this.formBuilder.group({
 		email: ['', [Validators.required, Validators.email]],
 		username: ['', Validators.required],
-		password: ['', Validators.required],
+		password: ['', [Validators.required, Validators.minLength(8)]],
 		confirm: ['', Validators.required]
 	})
 
