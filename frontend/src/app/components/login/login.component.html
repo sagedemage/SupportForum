@@ -5,7 +5,7 @@
         <input class="form-control" id="exampleInputUsername1" 
             formControlName="username" placeholder="Enter email or username"/>
 		<div *ngIf="checkoutForm.get('username')!.hasError('required')
-			&& checkoutForm.get('username')!.touched" class="error">
+			&& submitted" class="error">
             Required
         </div>
     </div>
@@ -14,9 +14,9 @@
         <input type="password" class="form-control" id="exampleInputPassword1" 
             formControlName="password" placeholder="Enter password"/>
 		<div *ngIf="checkoutForm.get('password')!.hasError('required')
-			&& checkoutForm.get('password')!.touched" class="error">
+			&& submitted" class="error">
             Required
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!checkoutForm.valid">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -8,6 +8,8 @@ import axios from 'axios';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+	submitted = false;
+
 	constructor(
 		private formBuilder: FormBuilder
 	) {}
@@ -17,30 +19,27 @@ export class LoginComponent {
     	password: ['', Validators.required]
   	});
 
-	ngOnInit(): void {
-		
-	}
-
 	onSubmit(): void {
 		let username = this.checkoutForm.value.username;
 		let password = this.checkoutForm.value.password;
-
-		axios.post(`http://localhost:8000/api/login`, {
-			username: username,
-			password: password,
-		}).then((response) => {
-			if (response.data.auth === true) {
-				// set cookie
-                //window.location.href = '/dashboard';
-				console.log(response.data.success_msg);
-			}
-			else {
-				// display error message
-            	console.log(response.data.err_msg);
-			}
-		}).catch(e => {
-            console.log(e);
-        })
+		this.submitted = true;
+		if (this.checkoutForm.valid) {
+			axios.post(`http://localhost:8000/api/login`, {
+				username: username,
+				password: password,
+			}).then((response) => {
+				if (response.data.auth === true) {
+					// set cookie
+					//window.location.href = '/dashboard';
+					console.log(response.data.success_msg);
+				}
+				else {
+					// display error message
+					console.log(response.data.err_msg);
+				}
+			}).catch(e => {
+				console.log(e);
+			})
+		}
 	}
-
 }

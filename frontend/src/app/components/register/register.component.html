@@ -12,7 +12,7 @@
             		Please enter the proper format for email
           		</div>
 				<div *ngIf="checkoutForm.get('email')!.hasError('required')
-							&& checkoutForm.get('email')!.touched"
+							&& submitted"
 					class="error">
             		Required
           		</div>
@@ -23,7 +23,7 @@
                     formControlName="username" placeholder="Enter username"
                 required />
 				<div *ngIf="checkoutForm.get('username')!.hasError('required')
-							&& checkoutForm.get('username')!.touched"
+							&& submitted"
 					class="error">
             		Required
           		</div>
@@ -34,7 +34,7 @@
                     formControlName="password" placeholder="Enter password"
                 required />
 				<div *ngIf="checkoutForm.get('password')!.hasError('required')
-							&& checkoutForm.get('password')!.touched"
+							&& submitted"
 					class="error">
             		Required
           		</div>
@@ -45,12 +45,12 @@
                     formControlName="confirm" placeholder="Enter password again"
                 required />
 				<div *ngIf="checkoutForm.get('confirm')!.hasError('required')
-							&& checkoutForm.get('confirm')!.touched"
+							&& submitted"
 					class="error">
             		Required
           		</div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
     <div id="message" class="col-md-auto col-lg-4">
