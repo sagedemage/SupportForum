@@ -26,10 +26,6 @@ footer a {
     align-items: center;
 }
 
-.error {
-	color: red;
-}
-
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
     

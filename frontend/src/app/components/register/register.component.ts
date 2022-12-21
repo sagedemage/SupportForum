@@ -11,7 +11,7 @@ import axios from 'axios';
 export class RegisterComponent {
 	submitted = false;
 	error = false;
-	msg = ''
+	msg = '';
 
 	constructor(
 		private formBuilder: FormBuilder
