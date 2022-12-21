@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import axios from 'axios';
 
 @Component({
@@ -13,9 +13,13 @@ export class LoginComponent {
 	) {}
 
 	checkoutForm = this.formBuilder.group({
-    	username: '',
-    	password: ''
+    	username: ['', Validators.required], 
+    	password: ['', Validators.required]
   	});
+
+	ngOnInit(): void {
+		
+	}
 
 	onSubmit(): void {
 		let username = this.checkoutForm.value.username;

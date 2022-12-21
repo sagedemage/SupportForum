@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PasswordValidator } from './password-validator';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import axios from 'axios';
 
 @Component({
@@ -15,10 +15,10 @@ export class RegisterComponent {
 	) {}
 
 	checkoutForm = this.formBuilder.group({
-		email: '',
-		username: '',
-		password: '',
-		confirm: ''
+		email: ['', [Validators.required, Validators.email]],
+		username: ['', Validators.required],
+		password: ['', Validators.required],
+		confirm: ['', Validators.required]
 	})
 
 	ngOnInit() {

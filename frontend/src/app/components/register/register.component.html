@@ -27,7 +27,7 @@
                     formControlName="confirm" placeholder="Enter password again"
                 required />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!checkoutForm.valid">Submit</button>
         </form>
     </div>
     <div id="message" class="col-md-auto col-lg-4">
