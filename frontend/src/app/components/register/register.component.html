@@ -1,6 +1,9 @@
 <h1> Register </h1>
 <div class="row">
     <div id="register_form" class="col col-lg-8">
+		<div *ngIf="error" class="alert alert-danger" role="alert">
+			{{ msg }}
+		</div>
         <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label htmlFor="exampleInputEmail1">Email address</label>

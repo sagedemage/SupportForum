@@ -9,6 +9,8 @@ import axios from 'axios';
 })
 export class LoginComponent {
 	submitted = false;
+	error = false;
+	msg = '';
 
 	constructor(
 		private formBuilder: FormBuilder
@@ -35,6 +37,8 @@ export class LoginComponent {
 				}
 				else {
 					// display error message
+					this.error = true;
+					this.msg = response.data.err_msg;
 					console.log(response.data.err_msg);
 				}
 			}).catch(e => {
