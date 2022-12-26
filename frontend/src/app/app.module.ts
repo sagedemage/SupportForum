@@ -10,6 +10,7 @@ import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationBarComponent } from './components/navigation_bar/navigation_bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 	BrowserAnimationsModule,
 	FormsModule,
 	ReactiveFormsModule,
+ 	NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

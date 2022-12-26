@@ -24,12 +24,12 @@ python3 manage.py migrate
 
 Create virtual environment
 ```
-python3 -m venv env
+python3 -m venv venv
 ```
 
 Activate virtual environment
 ```
-source env/bin/activate
+source venv/bin/activate
 ```
 
 Install dependencies of the Django app

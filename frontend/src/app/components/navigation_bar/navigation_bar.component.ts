@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./navigation_bar.component.css']
 })
 export class NavigationBarComponent {
-
+	isMenuCollapsed = true;
 }
