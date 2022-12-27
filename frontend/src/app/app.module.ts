@@ -11,6 +11,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavigationBarComponent } from './components/navigation_bar/navigation_bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 	FormsModule,
 	ReactiveFormsModule,
  	NgbModule,
+	MatToolbarModule,
+	MatIconModule,
+	MatMenuModule,
+	MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
