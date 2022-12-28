@@ -3,3 +3,6 @@
 	padding-left: 100px;
     padding-right: 100px;
 }
+.menu-spacer {
+    flex: 1 1 auto;
+}
