@@ -2,17 +2,27 @@
 <!-- Angular Material -->
 <p>
   <mat-toolbar color="primary">
-	<mat-toolbar-row>
-		<button mat-icon-button>
-		  <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-		</button>
-		<span>Support Forum</span>
-		<span class="menu-spacer"></span>
+	<mat-toolbar-row class="flex-container">
 		<div>
+			<button mat-icon-button>
+				<mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+			  </button>
+		</div>
+		<div class="link-logo">
+			<a [routerLink]="'/'">Support Forum</a>
+		</div>
+		<div class="link">
 		  <a mat-button [routerLink]="'/'"> Home </a>
-		  <a mat-button [routerLink]="'/about'"> About </a>
-		  <a mat-button [routerLink]="'/login'"> Login </a>
-		  <a mat-button [routerLink]="'/register'"> Register </a>
+		</div>
+		<div class="link">
+			<a mat-button [routerLink]="'/about'"> About </a>
+		</div>
+		<span class="menu-spacer"></span>
+		<div class="link">
+			<a mat-button [routerLink]="'/login'"> Login </a>
+		</div>
+		<div class="link">
+			<a mat-button [routerLink]="'/register'"> Register </a>
 		</div>
 	</mat-toolbar-row>
   </mat-toolbar>

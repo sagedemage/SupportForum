@@ -6,3 +6,27 @@
 .menu-spacer {
     flex: 1 1 auto;
 }
+
+.gap {
+    flex: 0
+}
+
+.flex-container > .link, .link-logo {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+.link > a {
+    text-decoration: none;
+    color: gray;
+}
+
+.link-logo > a {
+    text-decoration: none;
+    color: white;
+}
+
+.link > a:hover {
+    color: lightgray;
+  }
