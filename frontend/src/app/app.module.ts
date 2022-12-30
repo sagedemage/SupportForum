@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app_routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // My Components
 import { LoginComponent } from './components/login/login.component';
@@ -46,7 +47,8 @@ import {MatButtonModule} from '@angular/material/button';
 	  MatMenuModule,
 	  MatListModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
