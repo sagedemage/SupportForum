@@ -4,9 +4,8 @@
 		<button mat-icon-button  (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
 			<mat-icon>menu</mat-icon>
 		</button>
-		<span class="logo">Support Forum</span>
+		<a class="logo" [routerLink]="'/'"> Support Forum </a>
 		<div class="flex-container" fxShow="true" fxHide.lt-md>
-			<a mat-button [routerLink]="'/'"> Home </a>
 			<a mat-button [routerLink]="'/about'"> About </a>
 			<a mat-button [routerLink]="'/login'"> Login </a>
 			<a mat-button [routerLink]="'/register'"> Register </a>
@@ -24,7 +23,7 @@
 		<a mat-list-item [routerLink]="'/register'" (click)="sidenav.toggle()"> Register </a>
 	  </mat-nav-list>
 	</mat-sidenav>
-	
+
 	<!-- Sidenav Content -->
 	<mat-sidenav-content fxFlexFill>
 		<div class="content" role="main">
