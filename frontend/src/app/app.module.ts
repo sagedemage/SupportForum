@@ -12,7 +12,6 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavigationBarComponent } from './components/navigation_bar/navigation_bar.component';
 
 
 // Ng-Boostrap Libraries
@@ -24,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     RegisterComponent,
     AboutComponent,
     DashboardComponent,
-    NavigationBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +46,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 	  MatMenuModule,
 	  MatListModule,
     MatSidenavModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
