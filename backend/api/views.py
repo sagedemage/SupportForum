@@ -22,7 +22,7 @@ def register(request):
         if email_match.exists() is True:
             return JsonResponse({'registered': False, 'err_msg': "Email Already exists"})
         elif username_match.exists() is True:
-            return JsonResponse({'registered': False, 'err_msg': "User Already exists"})
+            return JsonResponse({'registered': False, 'err_msg': "Username Already exists"})
         elif password != confirm:
             return JsonResponse({'registered': False, 'err_msg': "Passwords Do Not Match"})
         elif len(password) < 8:
