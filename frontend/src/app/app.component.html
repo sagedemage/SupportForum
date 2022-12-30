@@ -1,33 +1,34 @@
 <!-- Toolbar -->
 <mat-toolbar class="navbar" color="primary">
-	<mat-toolbar-row class="flex-container">
-		<button mat-icon-button  (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-			<mat-icon>menu</mat-icon>
-		</button>
-		<a class="logo" [routerLink]="'/'"> Support Forum </a>
-		<div class="flex-container" fxShow="true" fxHide.lt-md>
-			<a mat-button [routerLink]="'/about'"> About </a>
-			<a mat-button [routerLink]="'/login'"> Login </a>
-			<a mat-button [routerLink]="'/register'"> Register </a>
-		</div>
-	</mat-toolbar-row>
-  </mat-toolbar>
+	<button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+		<mat-icon>menu</mat-icon>
+	</button>
+	<a class="logo" [routerLink]="'/'"> Support Forum </a>
+	<div fxShow="true" fxHide.lt-md>
+		<a mat-button [routerLink]="'/about'"> About </a>
+	</div>
+	<span class="menu-spacer"></span>
+	<div fxShow="true" fxHide.lt-md>
+		<a mat-button [routerLink]="'/login'"> Login </a>
+		<a mat-button [routerLink]="'/register'"> Register </a>
+	</div>
+</mat-toolbar>
 
 <!-- Sidenav -->
 <mat-sidenav-container fxFlexFill>
 	<mat-sidenav #sidenav>
-	  <mat-nav-list>
-		<a mat-list-item [routerLink]="'/'" (click)="sidenav.toggle()"> Home </a>
-		<a mat-list-item [routerLink]="'/about'" (click)="sidenav.toggle()"> About </a>
-		<a mat-list-item [routerLink]="'/login'" (click)="sidenav.toggle()"> Login </a>
-		<a mat-list-item [routerLink]="'/register'" (click)="sidenav.toggle()"> Register </a>
-	  </mat-nav-list>
+		<mat-nav-list>
+			<a mat-list-item [routerLink]="'/'" (click)="sidenav.toggle()"> Home </a>
+			<a mat-list-item [routerLink]="'/about'" (click)="sidenav.toggle()"> About </a>
+			<a mat-list-item [routerLink]="'/login'" (click)="sidenav.toggle()"> Login </a>
+			<a mat-list-item [routerLink]="'/register'" (click)="sidenav.toggle()"> Register </a>
+		</mat-nav-list>
 	</mat-sidenav>
 
 	<!-- Sidenav Content -->
 	<mat-sidenav-content fxFlexFill>
 		<div class="content">
-			<router-outlet></router-outlet> 	
+			<router-outlet></router-outlet>
 		</div>
 		<footer>
 			<div id="copyright">
@@ -35,5 +36,4 @@
 			</div>
 		</footer>
 	</mat-sidenav-content>
-  </mat-sidenav-container>
-
+</mat-sidenav-container>
