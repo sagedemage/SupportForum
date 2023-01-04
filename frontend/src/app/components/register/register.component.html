@@ -18,12 +18,12 @@
                 <mat-label>Username</mat-label>
                 <input formControlName="username" matInput>
             </mat-form-field>
-            <div *ngIf="checkoutForm.get('password')!.hasError('minlength') && submitted" class="error">
-                Password must be 8 characters or more
-            </div>
             <mat-form-field class="field-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
                 <input type="password" id="password" formControlName="password" matInput>
+                <mat-error *ngIf="checkoutForm.get('password')!.hasError('minlength') && submitted">
+                    Password must be 8 characters or more
+                </mat-error>
             </mat-form-field>
             <mat-form-field class="field-full-width" appearance="fill">
                 <mat-label>Confirm</mat-label>
@@ -41,6 +41,5 @@
         <p id="has_lowercase"> contains a lowercase letter </p>
         <p id="has_uppercase"> contains an uppercase letter </p>
         <p id="has_number"> contains a number </p>
-        <p id="good_password_length"> minimum of 8 characters </p>
     </div>
 </div>
