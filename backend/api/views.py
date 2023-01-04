@@ -18,15 +18,10 @@ def register(request):
         email_match = User.objects.filter(email__exact=serializer.data.get("email"))
         username_match = User.objects.filter(username__exact=serializer.data.get("username"))
         password = serializer.data.get("password")
-        confirm = request.data.get("confirm")
         if email_match.exists() is True:
             return JsonResponse({'registered': False, 'err_msg': "Email Already exists"})
         elif username_match.exists() is True:
-            return JsonResponse({'registered': False, 'err_msg': "User Already exists"})
-        elif password != confirm:
-            return JsonResponse({'registered': False, 'err_msg': "Passwords Do Not Match"})
-        elif len(password) < 8:
-            return JsonResponse({'registered': False, 'err_msg': "Password must be at least 8 characters"})
+            return JsonResponse({'registered': False, 'err_msg': "Username Already exists"})
         else:
             hashed_password = make_password(password)
             user = User(email=serializer.data.get("email"), username=serializer.data.get("username"),
