@@ -5,12 +5,12 @@
 	</button>
 	<a class="logo" [routerLink]="'/'"> Support Forum </a>
 	<div fxShow="true" fxHide.lt-md>
-		<a mat-button [routerLink]="'/about'"> About </a>
+		<a mat-button class="link-button" [routerLink]="'/about'"> About </a>
 	</div>
 	<span class="menu-spacer"></span>
 	<div fxShow="true" fxHide.lt-md>
-		<a mat-button [routerLink]="'/login'"> Login </a>
-		<a mat-button [routerLink]="'/register'"> Register </a>
+		<a mat-button class="link-button" [routerLink]="'/login'"> Login </a>
+		<a mat-button class="link-button" [routerLink]="'/register'"> Register </a>
 	</div>
 </mat-toolbar>
 
