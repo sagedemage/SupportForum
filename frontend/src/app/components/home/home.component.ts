@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import axios from 'axios';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,6 +9,7 @@ import axios from 'axios';
 export class HomeComponent {
 	test = 'empty';
 	ngOnInit() {
+		/*
 		axios.get(`http://localhost:8000/api/test`)
 			.then((response) => {
 				this.test = response.data.test_response
@@ -18,5 +17,6 @@ export class HomeComponent {
 			.catch(e =>{
 				console.log(e);
 			})
+		*/
   	}
 }

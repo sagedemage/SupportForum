@@ -13,7 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { AuthGuardService } from './auth/auth-route.service';
+import { AuthService } from './auth/auth.service';
 
 // Ng-Boostrap Libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,6 +30,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCommonModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -56,9 +58,12 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
