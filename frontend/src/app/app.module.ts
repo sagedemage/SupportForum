@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 // My Components
 import { LoginComponent } from './components/login/login.component';
@@ -59,6 +60,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatInputModule,
     FlexLayoutModule,
+    HttpClientModule,
   ],
   providers: [
     AuthService,
