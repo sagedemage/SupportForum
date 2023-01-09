@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { PasswordValidator } from './password-validator';
 import { FormBuilder, Validators } from '@angular/forms';
-import axios from 'axios';
+//import axios from 'axios';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent {
 	msg = '';
 
 	constructor(
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		public http: HttpClient
 	) { }
 
 	checkoutForm = this.formBuilder.group({
@@ -36,32 +38,42 @@ export class RegisterComponent {
 			let username = this.checkoutForm.value.username;
 			let password = this.checkoutForm.value.password;
 			let confirm = this.checkoutForm.value.confirm;
-			
+
 			if (password != confirm) {
 				this.error = true;
 				this.msg = "Passwords Do Not Match";
 			}
 			else {
-				axios.post(`http://localhost:8000/api/register`, {
-					email: email,
-					username: username,
-					password: password,
-					confirm: confirm
-				}).then((response) => {
-					if (response.data.registered === true) {
-						// set cookie
-						//window.location.href = '/dashboard';
-						console.log(response.data.success_msg);
+				const url = 'http://localhost:8000/api/register';
+				const body = {
+					"email": email,
+					"username": username,
+					"password": password,
+					"confirm": confirm
+				}
+				const request = this.http.post(url, body);
+
+				request.subscribe({
+					next: (response: any) => {
+						console.log(response.registered);
+						if (response.registered === true) {
+							console.log(response.success_msg);
+						}
+						else {
+							// display error message
+							this.error = true;
+							this.msg = response.err_msg;
+							console.log(response.err_msg);
+						}
+					},
+					error: (e) => {
+						console.log(e);
+					},
+					complete: () => {
+						console.info('completed')
 					}
-					else {
-						// display error message
-						this.error = true;
-						this.msg = response.data.err_msg;
-						console.log(response.data.err_msg);
-					}
-				}).catch(e => {
-					console.log(e);
-				})
+				});
+
 			}
 		}
 	}
