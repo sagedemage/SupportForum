@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -14,7 +15,7 @@ export class LoginComponent {
 	msg = '';
 
 	constructor(
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder, public router: Router
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -35,10 +36,10 @@ export class LoginComponent {
 				const cookies = new Cookies();
 				if (response.data.auth === true) {
 					// set cookie
-					//window.location.href = '/dashboard';
 					cookies.set("token", response.data.token);
 					console.log(response.data.success_msg);
-
+					//window.location.href = '/dashboard';
+					this.router.navigate(['/dashboard']);
 				}
 				else {
 					// display error message
