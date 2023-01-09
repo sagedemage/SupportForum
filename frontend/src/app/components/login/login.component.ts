@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 @Component({
@@ -15,7 +15,9 @@ export class LoginComponent {
 	msg = '';
 
 	constructor(
-		private formBuilder: FormBuilder, public router: Router
+		private formBuilder: FormBuilder, 
+		public router: Router,
+		public http: HttpClient,
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -29,27 +31,34 @@ export class LoginComponent {
 		this.submitted = true;
 		this.error = false;
 		if (this.checkoutForm.valid) {
-			axios.post(`http://localhost:8000/api/login`, {
-				username: username,
-				password: password,
-			}).then((response) => {
-				const cookies = new Cookies();
-				if (response.data.auth === true) {
-					// set cookie
-					cookies.set("token", response.data.token);
-					console.log(response.data.success_msg);
-					//window.location.href = '/dashboard';
-					this.router.navigate(['/dashboard']);
-				}
-				else {
-					// display error message
-					this.error = true;
-					this.msg = response.data.err_msg;
-					console.log(response.data.err_msg);
-				}
-			}).catch(e => {
-				console.log(e);
-			})
+			const url = 'http://localhost:8000/api/login';
+			const request = this.http.post(url, {"username": username, "password": password});
+            
+            request.subscribe({
+                next: (response: any) => {
+                    console.log(response.auth);
+                    if (response.auth === true) {
+                        // set cookie
+						const cookies = new Cookies();
+						cookies.set("token", response.token);
+						console.log(response.success_msg);
+						//window.location.href = '/dashboard';
+						this.router.navigate(['/dashboard']);
+                    }
+                    else {
+                        // display error message
+						this.error = true;
+						this.msg = response.err_msg;
+						console.log(response.err_msg);
+                    }
+                },
+                error: (e) => {
+                    console.log(e);
+                },
+                complete: () => {
+                    console.info('completed')
+                }
+            });
 		}
 	}
 }
