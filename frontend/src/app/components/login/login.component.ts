@@ -43,7 +43,7 @@ export class LoginComponent {
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
 						//window.location.href = '/dashboard';
-						this.router.navigate(['/dashboard']);
+						//this.router.navigate(['/dashboard']);
                     }
                     else {
                         // display error message
