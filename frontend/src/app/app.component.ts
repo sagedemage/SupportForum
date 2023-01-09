@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import Cookies from 'universal-cookie';
 
 @Component({
@@ -8,7 +8,6 @@ import Cookies from 'universal-cookie';
 	styleUrls: ['./app.component.css']
 })
 
-@Injectable()
 export class AppComponent {
 	year = new Date().getFullYear();
 	status = localStorage.getItem('auth');
