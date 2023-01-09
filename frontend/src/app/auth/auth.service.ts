@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import Cookies from "universal-cookie";
-
 import { HttpClient } from "@angular/common/http";
-
 
 @Injectable()
 export class AuthService {
@@ -17,9 +15,13 @@ export class AuthService {
             
             request.subscribe({
                 next: (response: any) => {
-                    //console.log(response.auth); 
-                    this.status = response.auth;
-                    console.log(this.status);
+                    console.log(response.auth);
+                    if (response.auth === true) {
+                        localStorage.setItem('auth', 'true');
+                    }
+                    else {
+                        localStorage.setItem('auth', 'false');
+                    }
                 },
                 error: (e) => {
                     console.log(e);
@@ -28,6 +30,17 @@ export class AuthService {
                     console.info('completed')
                 }
             });
+        }
+
+        let auth_state = localStorage.getItem('auth');
+
+        console.log(auth_state);
+
+        if (auth_state == 'true') {
+            this.status = true;
+        }
+        else {
+            this.status = false;
         }
 
         return this.status;
