@@ -15,7 +15,7 @@ export class LoginComponent {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		public http: HttpClient,
+		private http: HttpClient,
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -40,7 +40,7 @@ export class LoginComponent {
 						const cookies = new Cookies();
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
-						window.location.href = '/dashboard';
+						window.location.href = '/login';
                     }
                     else {
                         // display error message

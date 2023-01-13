@@ -11,6 +11,7 @@ import Cookies from 'universal-cookie';
 export class AppComponent {
 	year = new Date().getFullYear();
 	status: boolean = false;
+	url: string = 'http://localhost:8000/api/get-decoded-token';
 
 	public logout() {
 		const cookies = new Cookies();
@@ -21,11 +22,9 @@ export class AppComponent {
 	constructor(private http: HttpClient) {}
 
 	ngOnInit() {
-		const url = 'http://localhost:8000/api/get-decoded-token';
-		const cookies = new Cookies();
-        const token = cookies.get("token");
+		const token = new Cookies().get("token");
 		if (token != undefined) {
-            const request = this.http.post(url, {"token": token});
+            const request = this.http.post(this.url, {"token": token});
             request.subscribe({
                 next: (response: any) => {
                     if (response.auth === true) {

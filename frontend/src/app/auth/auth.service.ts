@@ -6,13 +6,12 @@ import { HttpClient } from "@angular/common/http";
 @Injectable()
 export class AuthService {
     status = false;
+    url: string = 'http://localhost:8000/api/get-decoded-token';
     constructor(private http: HttpClient) {}
     public isAuthenticated(): boolean {
-        const url = 'http://localhost:8000/api/get-decoded-token';
-        const cookies = new Cookies();
-        const token = cookies.get("token");
+        const token = new Cookies().get("token");
 		if (token != undefined) {
-            const request = this.http.post(url, {"token": token});
+            const request = this.http.post(this.url, {"token": token});
             request.subscribe({
                 next: (response: any) => {
                     if (response.auth === true) {
