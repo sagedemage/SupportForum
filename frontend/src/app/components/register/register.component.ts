@@ -44,32 +44,38 @@ export class RegisterComponent {
 		if (event.target.value.match(lowerCaseLetters) && !this.password_statuses.get("lower_case")) {
 			console.log("increase");
 			this.progressbarValue += 33.33;
-			this.password_statuses.set("lower_case", true)
+			this.password_statuses.set("lower_case", true);
+			document.getElementById("has_lowercase")!.style.color="green";
 		}
 		else if (!event.target.value.match(lowerCaseLetters) && 
 			this.password_statuses.get("lower_case")) {
 			this.progressbarValue -= 33.33;
 			this.password_statuses.set("lower_case", false);
+			document.getElementById("has_lowercase")!.style.color="darkred";
 		}
 
 		if (event.target.value.match(upperCaseLetters) && 
 			this.password_statuses.get("upper_case") === false) {
 			this.progressbarValue += 33.33;
 			this.password_statuses.set("upper_case", true)
+			document.getElementById("has_uppercase")!.style.color="green";
 		}
 		else if (!event.target.value.match(upperCaseLetters) && 
 			this.password_statuses.get("upper_case")) {
 			this.progressbarValue -= 33.33;
 			this.password_statuses.set("upper_case", false);
+			document.getElementById("has_uppercase")!.style.color="darkred";
 		}
 
 		if (event.target.value.match(numeric) && this.password_statuses.get("number") === false) {
 			this.progressbarValue += 33.33;
-			this.password_statuses.set("number", true)
+			this.password_statuses.set("number", true);
+			document.getElementById("has_number")!.style.color="green";
 		}
 		else if (!event.target.value.match(numeric) && this.password_statuses.get("number")) {
 			this.progressbarValue -= 33.33;
 			this.password_statuses.set("number", false);
+			document.getElementById("has_number")!.style.color="darkred";
 		}
 	}
 
