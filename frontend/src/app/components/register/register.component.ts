@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { PasswordValidator } from './password-validator';
+//import { PasswordValidator } from './password-validator';
 import { FormBuilder, Validators } from '@angular/forms';
 //import axios from 'axios';
 import { HttpClient } from '@angular/common/http';
+
+const lowerCaseLetters: RegExp = /[a-z]/g;
+const upperCaseLetters: RegExp = /[A-Z]/g;
+const numeric: RegExp = /[0-9]/g;
 
 @Component({
 	selector: 'app-register',
@@ -13,12 +17,21 @@ export class RegisterComponent {
 	submitted = false;
 	error = false;
 	msg = '';
-	progressbarValue = 10;
+	progressbarValue = 0;
+	password_field: HTMLInputElement = (<HTMLInputElement>document.getElementById("password"));
+	password_statuses: Map<string, boolean>;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		public http: HttpClient
-	) { }
+	) { 
+		this.password_field = (<HTMLInputElement>document.getElementById("password"));
+		this.password_statuses = new Map<string, boolean>();
+		this.password_statuses.set("lower_case", false);
+		this.password_statuses.set("upper_case", false);
+		this.password_statuses.set("number", false);
+		this.password_statuses.set("good_length", false);
+	}
 
 	checkoutForm = this.formBuilder.group({
 		email: ['', [Validators.required, Validators.email]],
@@ -27,8 +40,41 @@ export class RegisterComponent {
 		confirm: ['', Validators.required]
 	})
 
+	onKey(event: any) {
+		if (event.target.value.match(lowerCaseLetters) && !this.password_statuses.get("lower_case")) {
+			console.log("increase");
+			this.progressbarValue += 33.33;
+			this.password_statuses.set("lower_case", true)
+		}
+		else if (!event.target.value.match(lowerCaseLetters) && 
+			this.password_statuses.get("lower_case")) {
+			this.progressbarValue -= 33.33;
+			this.password_statuses.set("lower_case", false);
+		}
+
+		if (event.target.value.match(upperCaseLetters) && 
+			this.password_statuses.get("upper_case") === false) {
+			this.progressbarValue += 33.33;
+			this.password_statuses.set("upper_case", true)
+		}
+		else if (!event.target.value.match(upperCaseLetters) && 
+			this.password_statuses.get("upper_case")) {
+			this.progressbarValue -= 33.33;
+			this.password_statuses.set("upper_case", false);
+		}
+
+		if (event.target.value.match(numeric) && this.password_statuses.get("number") === false) {
+			this.progressbarValue += 33.33;
+			this.password_statuses.set("number", true)
+		}
+		else if (!event.target.value.match(numeric) && this.password_statuses.get("number")) {
+			this.progressbarValue -= 33.33;
+			this.password_statuses.set("number", false);
+		}
+	}
+
 	ngOnInit() {
-		PasswordValidator();
+		/*PasswordValidator();*/
 	}
 
 	onSubmit(): void {

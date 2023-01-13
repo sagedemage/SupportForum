@@ -20,7 +20,7 @@
             </mat-form-field>
             <mat-form-field class="field-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input type="password" id="password" formControlName="password" matInput>
+                <input type="password" id="password" formControlName="password" (keyup)="onKey($event)" matInput>
                 <mat-error *ngIf="checkoutForm.get('password')!.hasError('minlength') && submitted">
                     Password must be 8 characters or more
                 </mat-error>
