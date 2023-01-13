@@ -38,47 +38,42 @@ export class RegisterComponent {
 		confirm: ['', Validators.required]
 	})
 
-	onKey(event: any) {
-		if (event.target.value.match(lowerCaseLetters) && !this.password_statuses.get("lower_case")) {
-			console.log("increase");
+	public increase_bar(password_status: string, info_id: string) {
+		if (!this.password_statuses.get(password_status)) {
 			this.progressbarValue += 33.33;
-			this.password_statuses.set("lower_case", true);
-			document.getElementById("has_lowercase")!.style.color="green";
-		}
-		else if (!event.target.value.match(lowerCaseLetters) && 
-			this.password_statuses.get("lower_case")) {
-			this.progressbarValue -= 33.33;
-			this.password_statuses.set("lower_case", false);
-			document.getElementById("has_lowercase")!.style.color="darkred";
-		}
-
-		if (event.target.value.match(upperCaseLetters) && 
-			this.password_statuses.get("upper_case") === false) {
-			this.progressbarValue += 33.33;
-			this.password_statuses.set("upper_case", true)
-			document.getElementById("has_uppercase")!.style.color="green";
-		}
-		else if (!event.target.value.match(upperCaseLetters) && 
-			this.password_statuses.get("upper_case")) {
-			this.progressbarValue -= 33.33;
-			this.password_statuses.set("upper_case", false);
-			document.getElementById("has_uppercase")!.style.color="darkred";
-		}
-
-		if (event.target.value.match(numeric) && this.password_statuses.get("number") === false) {
-			this.progressbarValue += 33.33;
-			this.password_statuses.set("number", true);
-			document.getElementById("has_number")!.style.color="green";
-		}
-		else if (!event.target.value.match(numeric) && this.password_statuses.get("number")) {
-			this.progressbarValue -= 33.33;
-			this.password_statuses.set("number", false);
-			document.getElementById("has_number")!.style.color="darkred";
+			this.password_statuses.set(password_status, true);
+			document.getElementById(info_id)!.style.color="green";
 		}
 	}
 
-	ngOnInit() {
-		/*PasswordValidator();*/
+	public decrease_bar(password_status: string, info_id: string) {
+		if (this.password_statuses.get(password_status)) {
+			this.progressbarValue -= 33.33;
+			this.password_statuses.set(password_status, false);
+			document.getElementById(info_id)!.style.color="darkred";
+		}
+	}
+
+	onKey(event: any) {
+		if (event.target.value.match(lowerCaseLetters)) {
+			this.increase_bar("lower_case", "has_lowercase");
+		}
+		else {
+			this.decrease_bar("lower_case", "has_lowercase");
+		}
+		if (event.target.value.match(upperCaseLetters)) {
+			this.increase_bar("upper_case", "has_uppercase");
+		}
+		else {
+			this.decrease_bar("upper_case", "has_uppercase");
+		}
+
+		if (event.target.value.match(numeric)) {
+			this.increase_bar("number", "has_number");
+		}
+		else if (!event.target.value.match(numeric)) {
+			this.decrease_bar("number", "has_number");
+		}
 	}
 
 	onSubmit(): void {
