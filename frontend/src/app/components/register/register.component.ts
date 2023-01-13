@@ -18,15 +18,13 @@ export class RegisterComponent {
 	error = false;
 	msg = '';
 	progressbarValue = 0;
-	password_field: HTMLInputElement = (<HTMLInputElement>document.getElementById("password"));
-	password_statuses: Map<string, boolean>;
+	password_field = (<HTMLInputElement>document.getElementById("password"));
+	password_statuses = new Map<string, boolean>();
 
 	constructor(
 		private formBuilder: FormBuilder,
-		public http: HttpClient
+		private http: HttpClient
 	) { 
-		this.password_field = (<HTMLInputElement>document.getElementById("password"));
-		this.password_statuses = new Map<string, boolean>();
 		this.password_statuses.set("lower_case", false);
 		this.password_statuses.set("upper_case", false);
 		this.password_statuses.set("number", false);
