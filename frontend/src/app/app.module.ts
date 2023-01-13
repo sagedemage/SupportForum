@@ -15,6 +15,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuardService } from './auth/auth-route.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+// Auth Service
 import { AuthService } from './auth/auth.service';
 
 // Ng-Boostrap Libraries
@@ -41,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
     RegisterComponent,
     AboutComponent,
     DashboardComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

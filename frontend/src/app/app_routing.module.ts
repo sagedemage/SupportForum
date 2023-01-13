@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { AuthGuardService as AuthGuard } from './auth/auth-route.service';
 
@@ -18,7 +19,7 @@ const routes: Routes = [
 		component: DashboardComponent,
 		canActivate: [AuthGuard]	
 	},
-	{ path: '**', redirectTo: ''}
+	{ path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

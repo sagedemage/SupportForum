@@ -41,6 +41,7 @@ export class LoginComponent {
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
 						window.location.href = '/login';
+						window.location.href = '/dashboard';
                     }
                     else {
                         // display error message
