@@ -10,7 +10,6 @@ import Cookies from 'universal-cookie';
 
 export class AppComponent {
 	year = new Date().getFullYear();
-	//status = localStorage.getItem('auth');
 	status: boolean = false;
 
 	public logout() {
@@ -19,7 +18,9 @@ export class AppComponent {
 		window.location.href = "/";
 	}
 
-	constructor(public http: HttpClient) {}
+	constructor(private http: HttpClient) {
+	
+	}
 
 	ngOnInit() {
 		const url = 'http://localhost:8000/api/get-decoded-token';
@@ -27,7 +28,6 @@ export class AppComponent {
         const token = cookies.get("token");
 		if (token != undefined) {
             const request = this.http.post(url, {"token": token});
-            
             request.subscribe({
                 next: (response: any) => {
                     if (response.auth === true) {
