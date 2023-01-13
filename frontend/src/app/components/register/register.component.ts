@@ -13,6 +13,7 @@ export class RegisterComponent {
 	submitted = false;
 	error = false;
 	msg = '';
+	progressbarValue = 10;
 
 	constructor(
 		private formBuilder: FormBuilder,
