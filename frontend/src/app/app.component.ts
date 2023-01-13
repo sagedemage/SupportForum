@@ -18,9 +18,7 @@ export class AppComponent {
 		window.location.href = "/";
 	}
 
-	constructor(private http: HttpClient) {
-	
-	}
+	constructor(private http: HttpClient) {}
 
 	ngOnInit() {
 		const url = 'http://localhost:8000/api/get-decoded-token';

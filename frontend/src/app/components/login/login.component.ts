@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import Cookies from 'universal-cookie';
 
 @Component({
@@ -17,7 +16,6 @@ export class LoginComponent {
 	constructor(
 		private formBuilder: FormBuilder,
 		public http: HttpClient,
-		private router: Router,
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -42,7 +40,7 @@ export class LoginComponent {
 						const cookies = new Cookies();
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
-						this.router.navigateByUrl('/dashboard');
+						window.location.href = '/dashboard';
                     }
                     else {
                         // display error message
