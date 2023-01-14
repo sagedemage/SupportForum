@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-typography: mat.define-typography-config(
+    $font-family: 'Roboto',    
+);
+
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: mat.define-palette(mat.$indigo-palette),
+        accent: mat.define-palette(mat.$green-palette),
+    ),
+    typography: $my-typography,
+    typogr
+    density: 0,
+));
+
+@include mat.all-component-themes($my-theme);

@@ -11,3 +11,18 @@
         margin-bottom: 30px;
     }
 }
+
+.progress-bar {
+    margin-bottom: 10px;  
+}
+
+#p-bar {
+    height: 15px;
+    border-radius: 25px;
+}
+
+.validator-info {
+    color: darkred;
+}
+
+

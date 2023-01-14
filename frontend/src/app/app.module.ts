@@ -34,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCommonModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -53,6 +54,8 @@ import { MatInputModule } from '@angular/material/input';
 	  FormsModule,
 	  ReactiveFormsModule,
  	  NgbModule,
+    FlexLayoutModule,
+    HttpClientModule,
     MatCommonModule,
 	  MatToolbarModule,
 	  MatIconModule,
@@ -63,8 +66,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    FlexLayoutModule,
-    HttpClientModule,
+    MatProgressBarModule,
   ],
   providers: [
     AuthService,

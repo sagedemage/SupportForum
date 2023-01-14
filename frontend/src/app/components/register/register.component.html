@@ -20,7 +20,7 @@
             </mat-form-field>
             <mat-form-field class="field-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input type="password" id="password" formControlName="password" matInput>
+                <input type="password" id="password" formControlName="password" (keyup)="onKey($event)" matInput>
                 <mat-error *ngIf="checkoutForm.get('password')!.hasError('minlength') && submitted">
                     Password must be 8 characters or more
                 </mat-error>
@@ -33,13 +33,11 @@
         </form>
     </div>
     <div id="message" class="col-md-auto col-lg-4">
-        <div class="progress">
-            <div id="p-bar" class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="100">
-            </div>
+        <div class="progress-bar">
+            <mat-progress-bar id="p-bar" color="accent" mode="determinate" [value]="progressbarValue"></mat-progress-bar>
         </div>
-        <p id="has_lowercase"> contains a lowercase letter </p>
-        <p id="has_uppercase"> contains an uppercase letter </p>
-        <p id="has_number"> contains a number </p>
+        <p id="has_lowercase"class="validator-info"> contains a lowercase letter </p>
+        <p id="has_uppercase" class="validator-info"> contains an uppercase letter </p>
+        <p id="has_number" class="validator-info"> contains a number </p>
     </div>
 </div>
