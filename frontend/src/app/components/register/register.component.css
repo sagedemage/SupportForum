@@ -12,12 +12,13 @@
     }
 }
 
-.progress-bar2 {
+.progress-bar {
     margin-bottom: 10px;  
 }
 
-#p-bar2 {
+#p-bar {
     height: 15px;
+    border-radius: 25px;
 }
 
 .validator-info {
