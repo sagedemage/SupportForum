@@ -22,23 +22,7 @@ export class AppComponent {
 	constructor(private http: HttpClient) {}
 
 	ngOnInit() {
-		const token = new Cookies().get("token");
-		if (token != undefined) {
-            const request = this.http.post(this.url, {"token": token});
-            request.subscribe({
-                next: (response: any) => {
-                    if (response.auth === true) {
-						this.status = true;
-                    }
-                    else {
-						this.status = false;
-                    }
-                },
-                error: (e) => {
-                    console.log(e);
-                },
-            });
-        }
+		this.check_auth();
   	}
 
 	public check_auth() {
