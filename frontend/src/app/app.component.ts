@@ -40,5 +40,25 @@ export class AppComponent {
             });
         }
   	}
+
+	public check_auth() {
+		const token = new Cookies().get("token");
+		if (token != undefined) {
+            const request = this.http.post(this.url, {"token": token});
+            request.subscribe({
+                next: (response: any) => {
+                    if (response.auth === true) {
+						this.status = true;
+                    }
+                    else {
+						this.status = false;
+                    }
+                },
+                error: (e) => {
+                    console.log(e);
+                },
+            });
+        }
+  	}
 }
 

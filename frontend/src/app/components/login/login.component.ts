@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Cookies from 'universal-cookie';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,8 @@ export class LoginComponent {
 	constructor(
 		private formBuilder: FormBuilder,
 		private http: HttpClient,
+		private router: Router,
+		private app_component: AppComponent
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -40,8 +44,10 @@ export class LoginComponent {
 						const cookies = new Cookies();
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
-						window.location.href = '/login';
-						window.location.href = '/dashboard';
+						//window.location.reload();
+						//window.location.href = '/dashboard';
+						this.app_component.check_auth();
+						this.router.navigate(['/dashboard']);
                     }
                     else {
                         // display error message
