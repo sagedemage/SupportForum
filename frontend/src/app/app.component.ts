@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import Cookies from 'universal-cookie';
 
+const url: string = 'http://localhost:8000/api/get-decoded-token';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -11,7 +13,6 @@ import Cookies from 'universal-cookie';
 export class AppComponent {
 	year = new Date().getFullYear();
 	status: boolean = false;
-	url: string = 'http://localhost:8000/api/get-decoded-token';
 
 	public logout() {
 		const cookies = new Cookies();
@@ -28,7 +29,7 @@ export class AppComponent {
 	public check_auth() {
 		const token = new Cookies().get("token");
 		if (token != undefined) {
-            const request = this.http.post(this.url, {"token": token});
+            const request = this.http.post(url, {"token": token});
             request.subscribe({
                 next: (response: any) => {
                     if (response.auth === true) {
