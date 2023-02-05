@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Cookies from 'universal-cookie';
-import { AppComponent } from 'src/app/app.component';
+//import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
 		private formBuilder: FormBuilder,
 		private http: HttpClient,
 		private router: Router,
-		private app_component: AppComponent
+		//private app_component: AppComponent
 	) {}
 
 	checkoutForm = this.formBuilder.group({
@@ -44,7 +44,7 @@ export class LoginComponent {
 						const cookies = new Cookies();
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
-						this.app_component.check_auth();
+						//this.app_component.check_auth();
 						this.router.navigate(['/dashboard']);
                     }
                     else {

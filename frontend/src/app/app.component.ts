@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import Cookies from 'universal-cookie';
+import { Router } from '@angular/router';
+//import Cookies from 'universal-cookie';
+import { AuthService } from './auth/auth.service';
 //import { check_auth_one } from "src/app/auth/check_auth";
 
-const url: string = 'http://localhost:8000/api/get-decoded-token';
+//const url: string = 'http://localhost:8000/api/get-decoded-token';
 
 @Component({
 	selector: 'app-root',
@@ -13,16 +15,24 @@ const url: string = 'http://localhost:8000/api/get-decoded-token';
 
 export class AppComponent {
 	year = new Date().getFullYear();
-	status: boolean = false;
+	//status: boolean = false;
+	auth = new AuthService(this.http, this.router);
 
+	constructor(
+		private http: HttpClient, 
+		private router: Router
+	) {}
+
+	/*
 	public logout() {
 		const cookies = new Cookies();
 		cookies.remove("token");
 		window.location.href = "/";
+		//this.router.navigate(['/']);
 	}
+	*/
 
-	constructor(private http: HttpClient) {}
-
+	/*
 	ngOnInit() {
 		this.check_auth();
   	}
@@ -46,5 +56,6 @@ export class AppComponent {
             });
         }
   	}
+	*/
 }
 
