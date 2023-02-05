@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -11,11 +9,9 @@ import { AuthService } from './auth/auth.service';
 
 export class AppComponent {
 	year = new Date().getFullYear();
-	auth = new AuthService(this.http, this.router);
 
 	constructor(
-		private http: HttpClient, 
-		private router: Router
+		public auth: AuthService,
 	) {}
 }
 
