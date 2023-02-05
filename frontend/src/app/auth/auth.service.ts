@@ -6,7 +6,7 @@ const url: string = 'http://localhost:8000/api/get-decoded-token';
 
 @Injectable()
 export class AuthService {
-    status = false; // this variable does not change right away
+    status = false;
     constructor(private http: HttpClient) {}
     public async isAuthenticated() {
         const token = new Cookies().get("token");
