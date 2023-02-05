@@ -20,11 +20,9 @@ export class AuthService {
             request.subscribe({
                 next: (response: any) => {
                     if (response.auth === true) {
-                        //this.status = true;
                         this.status.next(true);
                     }
                     else {
-                        //this.status = false;
                         this.status.next(false);
                     }
                 },
@@ -42,7 +40,6 @@ export class AuthService {
     public logout() {
 		const cookies = new Cookies();
 		cookies.remove("token");
-		//window.location.href = "/";
 		this.router.navigate(['/']);
 	}
 }
