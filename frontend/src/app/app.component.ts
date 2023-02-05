@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import Cookies from 'universal-cookie';
+//import { check_auth_one } from "src/app/auth/check_auth";
 
 const url: string = 'http://localhost:8000/api/get-decoded-token';
 
@@ -28,7 +29,7 @@ export class AppComponent {
 
 	public check_auth() {
 		const token = new Cookies().get("token");
-		if (token != undefined) {
+		if (token !== undefined) {
             const request = this.http.post(url, {"token": token});
             request.subscribe({
                 next: (response: any) => {

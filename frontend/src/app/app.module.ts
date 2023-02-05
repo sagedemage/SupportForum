@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AuthGuardService } from './auth/auth-route.service';
+import { AuthGuardService } from './auth/auth_route.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Auth Service

@@ -7,7 +7,7 @@ import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { AuthGuardService as AuthGuard } from './auth/auth-route.service';
+import { AuthGuardService as AuthGuard } from './auth/auth_route.service';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },

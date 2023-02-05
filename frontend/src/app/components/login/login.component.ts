@@ -44,8 +44,6 @@ export class LoginComponent {
 						const cookies = new Cookies();
 						cookies.set("token", response.token);
 						console.log(response.success_msg);
-						//window.location.reload();
-						//window.location.href = '/dashboard';
 						this.app_component.check_auth();
 						this.router.navigate(['/dashboard']);
                     }
