@@ -8,7 +8,7 @@ const url: string = 'http://localhost:8000/api/get-decoded-token';
 export class AuthService {
     status = false; // this variable does not change right away
     constructor(private http: HttpClient) {}
-    public isAuthenticated(): boolean {
+    public async isAuthenticated() {
         const token = new Cookies().get("token");
         console.log(token);
 		if (token !== undefined) {
@@ -29,7 +29,6 @@ export class AuthService {
                 }
             });
         }
-        console.log(this.status);
         return this.status;
     }
 }
